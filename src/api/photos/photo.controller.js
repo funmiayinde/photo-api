@@ -1,13 +1,16 @@
-import AppController from "../../core/api/app.controller";
-import Requestify from "../../utils/requestify";
-import {HTTP_METHODS} from "../../utils/request-methods";
-import {HTTP_CREATED, HTTP_OK} from "../../utils/status-codes";
+import AppController from '../../core/api/app.controller';
+import Requestify from '../../utils/requestify';
+import {HTTP_METHODS} from '../../utils/request-methods';
+import {HTTP_CREATED, HTTP_OK} from '../../utils/status-codes';
 import _ from 'underscore';
-import AppProcessor from "../../core/api/app.processor";
-import QueryPaser from "../../core/api/query.parser";
-import Pagination from "../../core/api/api.pagination";
-import {PhotoProcessor} from "./photo.processor";
+import AppProcessor from '../../core/api/app.processor';
+import QueryPaser from '../../core/api/query.parser';
+import Pagination from '../../core/api/api.pagination';
+import {PhotoProcessor} from './photo.processor';
 
+/**
+ * @class PhotoController
+ * */
 export class PhotoController extends AppController {
 	/**
 	 * @param {Object} model The model name
@@ -64,7 +67,6 @@ export class PhotoController extends AppController {
 	async find(req, res, next) {
 		const queryParser = new QueryPaser(Object.assign({}, req.query));
 		let pagination = new Pagination(req.originalUrl);
-		console.log('order history parser:', queryParser);
 		try {
 			const [orderHistory, total] = await PhotoProcessor.photoAggregation(queryParser, pagination);
 			const response = await AppProcessor.getPaginatedResponseObject(this.model, orderHistory, HTTP_OK,
