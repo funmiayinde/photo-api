@@ -32,9 +32,9 @@ export class PhotoProcessor {
 		let queryArray = this.query(queryParser, pagination);
 		console.log('photo query:', queryArray);
 		if (queryArray.length > 0) {
-			const orderHistory = await Photo.aggregate(queryArray);
-			const filtered = orderHistory.slice(pagination.skip, (pagination.skip + pagination.perPage));
-			return [filtered, orderHistory.length];
+			const photos = await Photo.aggregate(queryArray);
+			const filtered = photos.slice(pagination.skip, (pagination.skip + pagination.perPage));
+			return [filtered, photos.length];
 		}
 		return [null, null];
 	}

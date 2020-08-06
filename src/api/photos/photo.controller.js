@@ -68,8 +68,8 @@ export class PhotoController extends AppController {
 		const queryParser = new QueryPaser(Object.assign({}, req.query));
 		let pagination = new Pagination(req.originalUrl);
 		try {
-			const [orderHistory, total] = await PhotoProcessor.photoAggregation(queryParser, pagination);
-			const response = await AppProcessor.getPaginatedResponseObject(this.model, orderHistory, HTTP_OK,
+			const [photos, total] = await PhotoProcessor.photoAggregation(queryParser, pagination);
+			const response = await AppProcessor.getPaginatedResponseObject(this.model, photos, HTTP_OK,
 				'', total, pagination, queryParser);
 			return res.status(HTTP_OK).json(response);
 		} catch (e) {
