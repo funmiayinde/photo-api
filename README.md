@@ -11,8 +11,8 @@ Api web service written in Node and Mongo
 
 
 ### Getting Started
-- Clone the repository `git clone https://github.com/funmiayinde/node-api-backend.git`
-- Change into the directory `cd node-api-backend`
+- Clone the repository `git clone https://github.com/funmiayinde/photo-api.git`
+- Change into the directory `cd photo-api`
 - Install all required dependencies with `npm install`
 - Start the application with `npm run dev`
 - Build the application with `npm run build`
